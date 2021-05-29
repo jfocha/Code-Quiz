@@ -1,0 +1,17 @@
+.container a {
+    color: #8552fd;
+    text-decoration: none;
+}
+
+main {
+    padding-top: 60px;
+}
+
+main h1 {
+    font-weight: bold;
+}
+
+main p{
+    font-size: 30px;
+    padding: 30px;
+}
