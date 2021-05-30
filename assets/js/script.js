@@ -4,9 +4,9 @@ var sec = 75;
 
 function timer() {
     var timer = setInterval(function () {
-        document.getElementById("time-left").innerHTML = "Time: " + sec;
         sec--;
-        if (sec < 0) {
+        document.getElementById("time-left").innerHTML = "Time: " + sec;
+        if (sec < 0 || !myQuestions[questionIndex]) {
             endQuiz();
             clearInterval(timer);
         }
@@ -84,9 +84,6 @@ const myQuestions = [
 ];
 
 var getQuestion = function () {
-    if (!myQuestions[questionIndex]) {
-        endQuiz();
-    } else {
     var currentQuestion = myQuestions[questionIndex]
     var quiz = document.getElementById('page-content');
     quiz.innerHTML = "<h1>" + currentQuestion.question + "</h1>";
@@ -99,11 +96,11 @@ var getQuestion = function () {
         }
     }
 }
-}
 
 var endQuiz = function () {
+
     var score = document.getElementById('page-content');
-    score.innerHTML = "<h1>Great!</h1>";
+    score.innerHTML = "<h1>All done!</h1><p>Your final score is " + sec + ".</p>";
 }
 
 // for edit and delete buttons
