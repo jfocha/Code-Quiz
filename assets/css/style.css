@@ -22,3 +22,7 @@ main p {
 .row {
     padding: 20px;
 }
+
+.wrapper {
+    padding: 100px 0 0 400px;
+}
