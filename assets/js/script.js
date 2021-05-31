@@ -1,7 +1,7 @@
 var pageContentEl = document.querySelector("#page-content");
 var questionIndex = 0;
 var sec = 75;
-var initialsEl = document.getElementById("initials");
+var initialsEl = document.getElementById("#initials");
 // var highScoreButton = document.querySelector("#submit");
 // initialsEl.setAttribute("class", "hide");
 
@@ -115,57 +115,33 @@ var endQuiz = function () {
     input.name = "initials";
 
     score.appendChild(input);
-    //score.appendChild(document.createElement("br"));
-    //document.addEventListener('DOMContentLoaded', function() {
     var highScoreButton = document.createElement('input');
     highScoreButton.type = 'button';
     highScoreButton.id = 'submit';
     highScoreButton.value = 'Submit';
     highScoreButton.className = 'btn btn-primary btn-lg';
-
-    // highScoreButton.onclick = saveHighScore;
-    // // …
-    // };
-
-    // var container = document.getElementById('container');
     score.appendChild(highScoreButton);
-    //}, false);
-    // var form = document.createElement("form");
-    // form.setAttribute("method", "post");
-    // form.setAttribute("action", "submit.php");
-    //                 // create a submit button
-    //                 var s = document.createElement("input");
-    //                 s.setAttribute("type", "submit");
-    //                 s.setAttribute("value", "Submit");
-    //                                 // Append the submit button to the form
-    //             form.appendChild(s); 
 
-    //             document.getElementsByTagName("body")[0]
-    //            .appendChild(form);
+    console.log(initialsEl);
 
-    // var div1 = document.createElement('div');
-    // // Get template data
-    // div1.innerHTML = document.getElementById('initials').innerHTML;
-    // // append to our form, so that template data
-    // //become part of form
-    // document.getElementById('initials').appendChild(div1);
+    highScoreButton.onclick = saveHighScore;
 
-    // <form class='form-inline'><div class='form-group mb-2'><label for='staticEmail2' class='sr-only'>Enter initials: </label><input type='text' readonly class='form-control-plaintext' id='initials'></div><button type='submit' class='btn btn-primary mb-2'>Submit</button></form>";
+    console.log(initialsEl);
+    }
+
+var saveHighScore = function () {
+    var initials = initialsEl;
+    if (initials !== "") {
+        var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
+        var newScore = {
+            score: sec,
+            initials: initials
+        }
+        highScores.push(newScore);
+        window.localStorage.setItem("highScores", JSON.stringify(highScores));
+        window.location.href = "highscores.html";
+    }
 }
-
-// var saveHighScore = function () {
-//     var initials = initialsEl.nodeValue;
-//     if (initials !== "") {
-//         var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
-//         var newScore = {
-//             score: sec,
-//             initials: initials
-//         }
-//         highScores.push(newScore);
-//         window.localStorage.setItem("highScores", JSON.stringify(highScores));
-//         window.location.href = "highscores.html";
-//     }
-// }
 
 // var checkEnter = function (event) {
 //     if (event.key === "Enter") {
@@ -177,6 +153,6 @@ var endQuiz = function () {
 
 // highScoreButton.onclick = saveHighScore;
 
-// for edit and delete buttons
+
 pageContentEl.addEventListener("click", taskButtonHandler);
 
