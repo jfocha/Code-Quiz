@@ -2,15 +2,18 @@ var pageContentEl = document.querySelector(".wrapper");
 var highScores = JSON.parse(window.localStorage.getItem("highScores"));
 var score = document.getElementById('highscores');
 
-for (let i = 0; i < highScores.length; i++) {
-    // document.createElement
-    var listOfScores = document.createElement("li");
-    listOfScores.innerText = highScores[i].initials + " " + highScores[i].score;
-    score.appendChild(listOfScores);
-    
+console.log(highScores);
+if (highScores) {
+    for (let i = 0; i < highScores.length; i++) {
+        // document.createElement
+        var listOfScores = document.createElement("li");
+        listOfScores.innerText = highScores[i].initials + " " + highScores[i].score;
+        score.appendChild(listOfScores);
+
+    }
 }
 
-console.log(highScores[0].score);
+//console.log(highScores[0].score);
 
 var clearButton = function (event) {
     // get target element from event
@@ -18,7 +21,7 @@ var clearButton = function (event) {
     console.log(targetEl);
     if (targetEl.matches("#clear")) {
         localStorage.clear();
-        window.location.reload(false); 
+        window.location.reload(false);
     }
 }
 

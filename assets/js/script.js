@@ -1,7 +1,7 @@
 var pageContentEl = document.querySelector("#page-content");
 var questionIndex = 0;
 var sec = 75;
-var initialsEl = document.getElementById("#initials");
+var initialsEl = document.getElementById('initials');
 // var highScoreButton = document.querySelector("#submit");
 // initialsEl.setAttribute("class", "hide");
 
@@ -123,19 +123,26 @@ var endQuiz = function () {
     score.appendChild(highScoreButton);
 
     console.log(initialsEl);
+    console.log(input.value);
 
     highScoreButton.onclick = saveHighScore;
+
+
 
     console.log(initialsEl);
     }
 
-var saveHighScore = function () {
-    var initials = initialsEl;
-    if (initials !== "") {
+var saveHighScore = function (event) {
+    event.preventDefault();
+    console.log(initialsEl);
+    var temp = document.getElementById('initials');
+    console.log(temp.value);
+    var initialsText = temp.value;
+    if (initialsText !== "") {
         var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
         var newScore = {
             score: sec,
-            initials: initials
+            initials: initialsText
         }
         highScores.push(newScore);
         window.localStorage.setItem("highScores", JSON.stringify(highScores));
